@@ -51,7 +51,7 @@ and data conversion utilities. This document also specifies the
 
 A CCSV (Control-Character-Separated Values) file is a file format
 for moving rectangular data between applications such as
-spreadsheets, statistical analysis programs, databases, and 
+spreadsheets, statistical analysis programs, databases, and
 conversion utilities.
 
 CCSV is similar in purpose to Comma-Separated Values (CSV) files
@@ -66,7 +66,7 @@ ordinary printable characters solely because those characters have
 special meaning in other delimited-value formats.
 
 A CCSV file consists of a required header followed by zero or more
-records. The header and every record contain the same number of 
+records. The header and every record contain the same number of
 fields. The first row therefore defines the names of the columns,
 while subsequent rows contain the corresponding values.
 
