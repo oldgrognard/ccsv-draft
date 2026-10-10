@@ -217,10 +217,10 @@ Table of Contents
    arrangements when the surrounding record contains the appropriate
    number of fields.
 
-   field1&lt;US&gt;field2
-   &lt;US&gt;field2
-   field1&lt;US&gt;
-   &lt;US&gt;
+   field1<US>field2
+   <US>field2
+   field1<US>
+   <US>
 
    where <US> represents U+001F.
 
