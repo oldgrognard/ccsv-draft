@@ -1314,7 +1314,8 @@ No additional end-of-file character or sequence is required.<a href="#section-3.
 <p id="section-3.3-1">The following ABNF <span>[<a href="#RFC5234" class="cite xref">RFC5234</a>]</span> describes the CCSV structure
 at the UTF-8 octet level. The UTF-8 productions are
 taken from <span>[<a href="#RFC3629" class="cite xref">RFC3629</a>]</span>.<a href="#section-3.3-1" class="pilcrow">¶</a></p>
-<p id="section-3.3-2"><code>
+<div class="alignLeft art-text artwork" id="section-3.3-2">
+<pre>
 file       = header RS *(record RS) [record]
 header     = field *(US field)
 record     = field *(US field)
@@ -1331,17 +1332,20 @@ UTF8-4     = %xF0 %x90-BF 2( UTF8-tail ) /
              %xF1-F3 3( UTF8-tail ) /
              %xF4 %x80-8F 2( UTF8-tail )
 UTF8-tail  = %x80-BF
-</code><a href="#section-3.3-2" class="pilcrow">¶</a></p>
+</pre><a href="#section-3.3-2" class="pilcrow">¶</a>
+</div>
 <p id="section-3.3-3">The UTF-8 grammar above is provided for implementation convenience. The authoritative definition of UTF-8 is <span>[<a href="#RFC3629" class="cite xref">RFC3629</a>]</span>.<a href="#section-3.3-3" class="pilcrow">¶</a></p>
 <p id="section-3.3-4">A field <span class="bcp14">MAY</span> be empty. Consequently, the following are valid field arrangements when the surrounding
 record contains the appropriate number of fields.<a href="#section-3.3-4" class="pilcrow">¶</a></p>
-<p id="section-3.3-5"><code>
+<div class="alignLeft art-text artwork" id="section-3.3-5">
+<pre>
 field1&amp;lt;US&amp;gt;field2
 &amp;lt;US&amp;gt;field2
 field1&amp;lt;US&amp;gt;
 &amp;lt;US&amp;gt;
-</code><a href="#section-3.3-5" class="pilcrow">¶</a></p>
-<p id="section-3.3-6">where <code>&amp;lt;US&amp;gt;</code> represents U+001F.<a href="#section-3.3-6" class="pilcrow">¶</a></p>
+</pre><a href="#section-3.3-5" class="pilcrow">¶</a>
+</div>
+<p id="section-3.3-6">where <code>&lt;US&gt;</code> represents U+001F.<a href="#section-3.3-6" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
