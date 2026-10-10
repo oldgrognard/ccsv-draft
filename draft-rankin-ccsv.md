@@ -151,10 +151,10 @@ The UTF-8 grammar above is provided for implementation convenience. The authorit
 A field MAY be empty. Consequently, the following are valid field arrangements when the surrounding
 record contains the appropriate number of fields.
 
-    field1&lt;US&gt;field2
-    &lt;US&gt;field2
-    field1&lt;US&gt;
-    &lt;US&gt;
+    field1<US>field2
+    <US>field2
+    field1<US>
+    <US>
 
 where ``<US>`` represents U+001F.
 
