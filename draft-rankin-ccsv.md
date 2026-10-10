@@ -128,38 +128,35 @@ The following ABNF {{!RFC5234}} describes the CCSV structure
 at the UTF-8 octet level. The UTF-8 productions are
 taken from {{!RFC3629}}.
 
-```
-file       = header RS *(record RS) [record]
-header     = field *(US field)
-record     = field *(US field)
-field      = *field-char
-field-char = %x00-1D / %x20-7F / UTF8-2 / UTF8-3 / UTF8-4
-RS         = %x1E ; Record Separator, U+001E
-US         = %x1F ; Unit Separator, U+001F
-UTF8-2     = %xC2-DF UTF8-tail
-UTF8-3     = %xE0 %xA0-BF UTF8-tail /
-             %xE1-EC 2( UTF8-tail ) /
-             %xED 3( UTF8-tail ) /
-             %xEE-EF 2( UTF8-tail )
-UTF8-4     = %xF0 %x90-BF 2( UTF8-tail ) /
-             %xF1-F3 3( UTF8-tail ) /
-             %xF4 %x80-8F 2( UTF8-tail )
-UTF8-tail  = %x80-BF
-```
+
+    file       = header RS *(record RS) [record]
+    header     = field *(US field)
+    record     = field *(US field)
+    field      = *field-char
+    field-char = %x00-1D / %x20-7F / UTF8-2 / UTF8-3 / UTF8-4
+    RS         = %x1E ; Record Separator, U+001E
+    US         = %x1F ; Unit Separator, U+001F
+    UTF8-2     = %xC2-DF UTF8-tail
+    UTF8-3     = %xE0 %xA0-BF UTF8-tail /
+                 %xE1-EC 2( UTF8-tail ) /
+                 %xED 3( UTF8-tail ) /
+                 %xEE-EF 2( UTF8-tail )
+    UTF8-4     = %xF0 %x90-BF 2( UTF8-tail ) /
+                 %xF1-F3 3( UTF8-tail ) /
+                 %xF4 %x80-8F 2( UTF8-tail )
+    UTF8-tail  = %x80-BF
 
 The UTF-8 grammar above is provided for implementation convenience. The authoritative definition of UTF-8 is {{!RFC3629}}.
 
 A field MAY be empty. Consequently, the following are valid field arrangements when the surrounding
 record contains the appropriate number of fields.
 
-```
-field1&lt;US&gt;field2
-&lt;US&gt;field2
-field1&lt;US&gt;
-&lt;US&gt;
-```
+    field1&lt;US&gt;field2
+    &lt;US&gt;field2
+    field1&lt;US&gt;
+    &lt;US&gt;
 
-where ``&lt;US&gt;`` represents U+001F.
+where ``<US>`` represents U+001F.
 
 # Security Considerations {#security}
 
