@@ -19,35 +19,34 @@
 # Change the file extension to match the format (.xml for XML, etc...)
 #
 ###
-title: "TODO - Your title"
-abbrev: "TODO - Abbreviation"
+title: "Common Format and Media Type for Control-Character-Separated Values (CCSV) Files"
+abbrev: "CCSV File Format"
 category: info
 
-docname: draft-todo-yourname-protocol-latest
-submissiontype: IETF  # also: "independent", "editorial", "IAB", or "IRTF"
+docname: draft-rankin-ccsv-latest
+submissiontype: IETF
 number:
 date:
 consensus: true
 v: 3
-area: AREA
-workgroup: WG Working Group
+area: Applications and Real-Time
+workgroup: Independent Submission
 keyword:
- - next generation
- - unicorn
- - AI-native
+ - CCSV
+ - media type
+ - tabular data
 venue:
-  group: WG
-  type: Working Group
-  mail: WG@example.com
-  arch: https://example.com/WG
-  github: USER/REPO
-  latest: https://example.com/LATEST
+#  group: WG
+#  type: Working Group
+#  mail: WG@example.com
+#  arch: https://example.com/WG
+  github: "oldgrognard/ccsv-draft"
+  latest: "https://oldgrognard.github.io/ccsv-draft/draft-rankin-ccsv.html"
 
 author:
  -
-    fullname: Your Name Here
-    organization: Your Organization Here
-    email: your.email@example.com
+    fullname: "Mike Rankin"
+    email: "mrankin@reactor.zone"
 
 normative:
 
