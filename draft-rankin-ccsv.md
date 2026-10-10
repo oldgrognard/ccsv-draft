@@ -153,13 +153,13 @@ A field MAY be empty. Consequently, the following are valid field arrangements w
 record contains the appropriate number of fields.
 
 ```
-field1<US>field2
-<US>field2
-field1<US>
-<US>
+field1&lt;US&gt;field2
+&lt;US&gt;field2
+field1&lt;US&gt;
+&lt;US&gt;
 ```
 
-where ``<US>`` represents U+001F.
+where ``&lt;US&gt;`` represents U+001F.
 
 # Security Considerations {#security}
 
