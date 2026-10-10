@@ -9,8 +9,8 @@ number:
 date:
 consensus: true
 v: 3
-area: Applications and Real-Time
-workgroup: Independent Submission
+# area: Applications and Real-Time
+# workgroup: Independent Submission
 keyword:
  - CCSV
  - media type
