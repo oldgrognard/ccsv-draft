@@ -133,17 +133,26 @@ taken from {{!RFC3629}}.
     header     = field *(US field)
     record     = field *(US field)
     field      = *field-char
-    field-char = %x00-1D / %x20-7F / UTF8-2 / UTF8-3 / UTF8-4
+    field-char = %x00-1D /
+                 %x20-7F /
+                 UTF8-2 /
+                 UTF8-3 / UTF8-4
+
     RS         = %x1E ; Record Separator, U+001E
+
     US         = %x1F ; Unit Separator, U+001F
+
     UTF8-2     = %xC2-DF UTF8-tail
+
     UTF8-3     = %xE0 %xA0-BF UTF8-tail /
                  %xE1-EC 2( UTF8-tail ) /
                  %xED 3( UTF8-tail ) /
                  %xEE-EF 2( UTF8-tail )
+
     UTF8-4     = %xF0 %x90-BF 2( UTF8-tail ) /
                  %xF1-F3 3( UTF8-tail ) /
                  %xF4 %x80-8F 2( UTF8-tail )
+
     UTF8-tail  = %x80-BF
 
 The UTF-8 grammar above is provided for implementation convenience. The authoritative definition of UTF-8 is {{!RFC3629}}.
@@ -158,9 +167,71 @@ record contains the appropriate number of fields.
 
 where ``<US>`` represents U+001F.
 
+# Encoding Considerations {#encoding}
+
+CCSV files MUST be encoded using UTF-8 {{!RFC3629}}.
+
+The UTF-8 encoding applies to the entire CCSV file, including the header and all field contents.
+
+A CCSV file MUST NOT begin with a UTF-8 byte order mark (BOM, U+FEFF).
+
+UTF-8 permits CCSV to represent Unicode text while retaining the single-octet representation
+of the ASCII control characters used as delimiters.
+
+CR and LF are data characters in CCSV and are not record delimiters.
+Applications transporting CCSV content MUST preserve CR and LF occurring within fields as data.
+
+When CCSV is transported using a protocol or representation that
+imposes additional requirements on textual content, those
+requirements apply to the transport representation. Such processing
+MUST NOT alter the CCSV data represented by the payload.
+
+# Internationalization Considerations {#i18n}
+
+CCSV uses UTF-8 {{!RFC3629}} and therefore supports
+Unicode text in field and header values.
+
+CCSV does not define a language, locale, collation, numeric format,
+date format, or other interpretation of field contents. Applications
+processing CCSV data are responsible for applying appropriate
+locale-specific or application-specific interpretation to field
+values.
+
+Unicode strings are intended to be compared as identifiers
+or used in security-sensitive operations may require Unicode
+normalization or other application-specific processing. CCSV does
+not prescribe a normalization form.
+
+
 # Security Considerations {#security}
 
-TODO Security
+CCSV is a passive data format and does not itself define executable
+content. However, CCSV data is commonly imported into applications
+such as spreadsheets, databases, statistical software, and scripts.
+Those applications may assign additional semantics to particular
+field values.
+
+In particular, applications that import CCSV data into spreadsheet
+software or other systems capable of evaluating expressions
+MUST NOT assume that field contents are trustworthy. An application
+may interpret a field beginning with a particular
+character as a formula, expression, command, or other executable
+content. Such applications SHOULD treat CCSV field
+contents as untrusted input and apply appropriate validation or
+escaping before passing the data to an interpreter.
+
+Implementations parsing CCSV data SHOULD also
+protect against resource-exhaustion attacks, including excessively
+large fields, records, or files.
+
+CCSV provides no confidentiality, integrity, authentication, or
+access-control mechanisms. Applications requiring those properties
+MUST provide them through mechanisms outside the CCSV
+format.
+
+Implementations MUST reject malformed UTF-8 rather
+than silently interpreting invalid UTF-8 sequences as valid CCSV
+data.
 
 
 # IANA Considerations {#iana}
