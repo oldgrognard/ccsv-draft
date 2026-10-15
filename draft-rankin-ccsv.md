@@ -160,12 +160,12 @@ The UTF-8 grammar above is provided for implementation convenience. The authorit
 A field MAY be empty. Consequently, the following are valid field arrangements when the surrounding
 record contains the appropriate number of fields.
 
-    field1<US>field2
-    <US>field2
-    field1<US>
-    <US>
+    field1&lt;US&gt;field2
+    lt;USgt;field2
+    field1lt;USgt;
+    lt;USgt;
 
-where ``<US>`` represents U+001F.
+where ``lt;USgt;`` represents U+001F.
 
 # Encoding Considerations {#encoding}
 
@@ -327,24 +327,24 @@ Author
 Change controller
 : IETF
 
-# Examples {{#examples}}
+# Examples {#examples}
 
-In the examples below <US> represents U+001F and
-<RS> represents U+001E. The notation is used only to
+In the examples below &lt;US&gt; represents U+001F and
+&lt;RS&gt; represents U+001E. The notation is used only to
 make the control characters visible and not part of an
 actual CCSV file
 
-## Basic Example {{#basic-example}}
+## Basic Example {#basic-example}
 
 The following CCSV data contains three columns and two records:
 
 ```
-Name<US>Age<US>City<RS>
-Alice<US>42<US>Boston<RS>
+Name&lt;US&gt;Age&lt;US&gt;City&lt;RS&gt;
+Alice<US>42<US>Boston&lt;RS&gt;
 Bob<US>37<US>Chicago
 ```
 
-## Empty Fields {{empty-fields}}
+## Empty Fields {empty-fields}
 
 The following record contains an empty second field:
 
@@ -357,7 +357,7 @@ The consecutive US characters represent an empty field.
 The following record begins with an empty field.
 
 ```
-<US>42<US>Boston
+&lt;US&gt;42&lt;US&gt;Boston
 ```
 
 ## Optional Final Record Separator
@@ -366,13 +366,13 @@ Both of the following representations contain the same three
 fields and ar valid CCSV representations of a final record:
 
 ```
-Alice<US>42<US>Boston
+Alice&lt;US&gt;42&lt;US&gt;Boston
 ```
 
 and:
 
 ```
-Alice<US>42<US>Boston<RS>
+Alice&lt;US&gt;42&lt;US&gt;Boston&lt;RS&rs;
 ```
 
 A producer SHOULD generally omit the final RS
