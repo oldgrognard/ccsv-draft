@@ -384,4 +384,6 @@ record separator.
 # Acknowledgments
 {:numbered="false"}
 
-TODO acknowledge.
+The author thanks those individuals who provided feedbanc and
+technical discissions concerning the CCSV format and its proposed
+media type
