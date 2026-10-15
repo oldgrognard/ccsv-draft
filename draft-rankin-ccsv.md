@@ -233,11 +233,151 @@ Implementations MUST reject malformed UTF-8 rather
 than silently interpreting invalid UTF-8 sequences as valid CCSV
 data.
 
+# Interoperability Considerations {#interop}
+
+Interoperability depends on sonsistent implementation of the CCSV
+formatting and encoding requirements
+
+In particular, implementations MUST agree on all of the following:
+
+- UTF-8 encoding;
+- absence of a leading UTF-8 BOM;
+- US (U+001F) as the field separator;
+- RS (U+001E) as the record separator;
+- equal field counts in the header and every record;
+- representation of empty fields;
+- prohibition of US and RS within field contents; and
+- treatment of the CR and LF as field data rather than record separators.
+
+Implementations MUST NOT treat printable delimiter characters as
+having special CCSV semantics. CCSV does not require quoting or escaping of printable
+characters merely because they have special meaning in
+other delimited-value formats.
+
+Implementations that consume CCSV SHOULD validate
+the file structure of the file before processing its contents.
+
 
 # IANA Considerations {#iana}
 
-This document has no IANA actions.
+IANA is requested to register the following media type in the
+Standards Tree:
 
+Type name
+: text
+
+Subtype name
+: ccsv
+
+Required parameters
+: charset. The charset parameter MUST have the value "UTF-8".
+
+Optional parameters
+: None.
+
+Encoding considerations
+: 8bit. CCSV content is encoded using UTF-8 as specified in {{encoding}}.
+  CR and LF occuring within fields are data characters and are not CCSV
+  record separators.
+
+Security considerations
+: See {{security}}.
+
+Interoperability considerations
+: See {{interop}}.
+
+Published specification
+: This document.
+
+Applications that use this media type
+:  Databases, spreadsheets, statistical programs, data
+  conversion utilities, and other applications that process
+  rectangular tabular data.
+
+Fragment identifier considerations
+:  CCSV does not define a fragment identifier syntax.
+
+Additional information
+:
+
+  Deprecated alias names for this type
+  : None.
+
+  Magic number(s)
+  : None.
+
+  File name extension(s)
+  : .ccsv
+
+  Macintosh file type code(s)
+  : None.
+
+Person & email address to contact for further information
+: Mike rankin <mrankin@oldgrognard.pub>
+
+Intended usage
+: COMMON
+
+Restrictions on usage
+: None.
+
+Author
+: Mike Rankin <mrankin@oldgrognard.pub>
+
+Change controller
+: IETF
+
+# Examples {{#examples}}
+
+In the examples below <US> represents U+001F and
+<RS> represents U+001E. The notation is used only to
+make the control characters visible and not part of an
+actual CCSV file
+
+## Basic Example {{#basic-example}}
+
+The following CCSV data contains three columns and two records:
+
+```
+Name<US>Age<US>City<RS>
+Alice<US>42<US>Boston<RS>
+Bob<US>37<US>Chicago
+```
+
+## Empty Fields {{empty-fields}}
+
+The following record contains an empty second field:
+
+```
+Alice<US><US>Boston
+```
+
+The consecutive US characters represent an empty field.
+
+The following record begins with an empty field.
+
+```
+<US>42<US>Boston
+```
+
+## Optional Final Record Separator
+
+Both of the following representations contain the same three
+fields and ar valid CCSV representations of a final record:
+
+```
+Alice<US>42<US>Boston
+```
+
+and:
+
+```
+Alice<US>42<US>Boston<RS>
+```
+
+A producer SHOULD generally omit the final RS
+unless its processing environment benefits from a terminating
+record separator.
 
 --- back
 
