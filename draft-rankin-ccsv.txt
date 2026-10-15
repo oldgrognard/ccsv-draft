@@ -3,9 +3,9 @@
 
 
 Network Working Group                                          M. Rankin
-Internet-Draft                                           11 October 2026
+Internet-Draft                                           15 October 2026
 Intended status: Informational                                          
-Expires: 14 April 2027
+Expires: 18 April 2027
 
 
   Common Format and Media Type for Control-Character-Separated Values
@@ -49,7 +49,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 14 April 2027.
+   This Internet-Draft will expire on 18 April 2027.
 
 Copyright Notice
 
@@ -76,8 +76,13 @@ Table of Contents
    4.  Encoding Considerations
    5.  Internationalization Considerations
    6.  Security Considerations
-   7.  IANA Considerations
-   8.  Normative References
+   7.  Interoperability Considerations
+   8.  IANA Considerations
+   9.  Examples
+     9.1.  Basic Example
+     9.2.  Empty Fields {empty-fields}
+     9.3.  Optional Final Record Separator
+   10. Normative References
    Acknowledgments
    Author's Address
 
@@ -228,12 +233,12 @@ Table of Contents
    arrangements when the surrounding record contains the appropriate
    number of fields.
 
-   field1<US>field2
-   <US>field2
-   field1<US>
-   <US>
+   field1&lt;US&gt;field2
+   lt;USgt;field2
+   field1lt;USgt;
+   lt;USgt;
 
-   where <US> represents U+001F.
+   where lt;USgt; represents U+001F.
 
 4.  Encoding Considerations
 
@@ -301,11 +306,131 @@ Table of Contents
    Implementations MUST reject malformed UTF-8 rather than silently
    interpreting invalid UTF-8 sequences as valid CCSV data.
 
-7.  IANA Considerations
+7.  Interoperability Considerations
 
-   This document has no IANA actions.
+   Interoperability depends on sonsistent implementation of the CCSV
+   formatting and encoding requirements
 
-8.  Normative References
+   In particular, implementations MUST agree on all of the following:
+
+   *  UTF-8 encoding;
+
+   *  absence of a leading UTF-8 BOM;
+
+   *  US (U+001F) as the field separator;
+
+   *  RS (U+001E) as the record separator;
+
+   *  equal field counts in the header and every record;
+
+   *  representation of empty fields;
+
+   *  prohibition of US and RS within field contents; and
+
+   *  treatment of the CR and LF as field data rather than record
+      separators.
+
+   Implementations MUST NOT treat printable delimiter characters as
+   having special CCSV semantics.  CCSV does not require quoting or
+   escaping of printable characters merely because they have special
+   meaning in other delimited-value formats.
+
+   Implementations that consume CCSV SHOULD validate the file structure
+   of the file before processing its contents.
+
+8.  IANA Considerations
+
+   IANA is requested to register the following media type in the
+   Standards Tree:
+
+   Type name  text
+
+   Subtype name  ccsv
+
+   Required parameters  charset.  The charset parameter MUST have the
+      value "UTF-8".
+
+   Optional parameters  None.
+
+   Encoding considerations  8bit.  CCSV content is encoded using UTF-8
+      as specified in Section 4.  CR and LF occuring within fields are
+      data characters and are not CCSV record separators.
+
+   Security considerations  See Section 6.
+
+   Interoperability considerations  See Section 7.
+
+   Published specification  This document.
+
+   Applications that use this media type  Databases, spreadsheets,
+      statistical programs, data conversion utilities, and other
+      applications that process rectangular tabular data.
+
+   Fragment identifier considerations  CCSV does not define a fragment
+      identifier syntax.
+
+   Additional information :
+
+   Deprecated alias names for this type  None.
+
+   Magic number(s)  None.
+
+   File name extension(s)  .ccsv
+
+   Macintosh file type code(s)  None.
+
+   Person & email address to contact for further information  Mike
+      rankin mrankin@oldgrognard.pub (mailto:mrankin@oldgrognard.pub)
+
+   Intended usage  COMMON
+
+   Restrictions on usage  None.
+
+   Author  Mike Rankin mrankin@oldgrognard.pub
+      (mailto:mrankin@oldgrognard.pub)
+
+   Change controller  IETF
+
+9.  Examples
+
+   In the examples below <US> represents U+001F and <RS> represents
+   U+001E.  The notation is used only to make the control characters
+   visible and not part of an actual CCSV file
+
+9.1.  Basic Example
+
+   The following CCSV data contains three columns and two records:
+
+   Name&lt;US&gt;Age&lt;US&gt;City&lt;RS&gt;
+   Alice<US>42<US>Boston&lt;RS&gt; Bob<US>37<US>Chicago
+
+9.2.  Empty Fields {empty-fields}
+
+   The following record contains an empty second field:
+
+   Alice<US><US>Boston
+
+   The consecutive US characters represent an empty field.
+
+   The following record begins with an empty field.
+
+   &lt;US&gt;42&lt;US&gt;Boston
+
+9.3.  Optional Final Record Separator
+
+   Both of the following representations contain the same three fields
+   and ar valid CCSV representations of a final record:
+
+   Alice&lt;US&gt;42&lt;US&gt;Boston
+
+   and:
+
+   Alice&lt;US&gt;42&lt;US&gt;Boston&lt;RS&rs;
+
+   A producer SHOULD generally omit the final RS unless its processing
+   environment benefits from a terminating record separator.
+
+10.  Normative References
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -332,7 +457,9 @@ Table of Contents
 
 Acknowledgments
 
-   TODO acknowledge.
+   The author thanks those individuals who provided feedbanc and
+   technical discissions concerning the CCSV format and its proposed
+   media type
 
 Author's Address
 
