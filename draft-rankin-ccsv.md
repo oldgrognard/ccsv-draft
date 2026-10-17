@@ -118,7 +118,7 @@ A conforming CCSV file MUST satisfy all of the following requirements:
 7. The header and every record MUST contain the same number of fields.
 8. Empty fields are represented by consecutive delimiters or by a delimiter adjacent to the beginning or end of a record, as applicable.
 9. US (U+001F) and RS (U+001E) MUST NOT occur within the contents of a field.
-10. Carriage return (CR, U+000D) and line feed (LF, U+000A) are valid field characters and MUST NOT be interprested as record separators.
+10. Carriage return (CR, U+000D) and line feed (LF, U+000A) are valid field characters and MUST NOT be interpreted as record separators.
 
 Except for US and RS, a field MAY contain any Unicode scalar value representable in UTF-8 including other ASCII control characters.
 
