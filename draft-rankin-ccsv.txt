@@ -3,9 +3,9 @@
 
 
 Network Working Group                                          M. Rankin
-Internet-Draft                                           15 October 2026
+Internet-Draft                                           17 October 2026
 Intended status: Informational                                          
-Expires: 18 April 2027
+Expires: 20 April 2027
 
 
   Common Format and Media Type for Control-Character-Separated Values
@@ -49,7 +49,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 18 April 2027.
+   This Internet-Draft will expire on 20 April 2027.
 
 Copyright Notice
 
@@ -189,7 +189,7 @@ Table of Contents
         of a field.
 
    10.  Carriage return (CR, U+000D) and line feed (LF, U+000A) are
-        valid field characters and MUST NOT be interprested as record
+        valid field characters and MUST NOT be interpreted as record
         separators.
 
    Except for US and RS, a field MAY contain any Unicode scalar value
