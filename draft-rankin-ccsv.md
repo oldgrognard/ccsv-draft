@@ -44,7 +44,6 @@ applications such as databases, spreadsheets, statistical software,
 and data conversion utilities. This document also specifies the
 ``text/csv`` media type for CCSV files.
 
-
 --- middle
 
 # Introduction {#intro}
@@ -92,7 +91,7 @@ The following terms are used throughout this document:
 
 A CCSV file MUST begin with a header.
 
-The header and eqch subsequent record MUST contain the ame number of fields
+The header and each subsequent record MUST contain the same number of fields.
 
 A Unit Separator (US, U+001F) separates adjacent fields within a record.
 
@@ -160,12 +159,12 @@ The UTF-8 grammar above is provided for implementation convenience. The authorit
 A field MAY be empty. Consequently, the following are valid field arrangements when the surrounding
 record contains the appropriate number of fields.
 
-    field1&lt;US&gt;field2
-    lt;USgt;field2
-    field1lt;USgt;
-    lt;USgt;
+    field<US>field2
+    <US>field2
+    field1<US>
+    <US>
 
-where ``lt;USgt;`` represents U+001F.
+where ``<US>`` represents U+001F.
 
 # Encoding Considerations {#encoding}
 
@@ -235,8 +234,8 @@ data.
 
 # Interoperability Considerations {#interop}
 
-Interoperability depends on sonsistent implementation of the CCSV
-formatting and encoding requirements
+Interoperability depends on consistent implementation of the CCSV
+formatting and encoding requirements.
 
 In particular, implementations MUST agree on all of the following:
 
@@ -263,68 +262,68 @@ the file structure of the file before processing its contents.
 IANA is requested to register the following media type in the
 Standards Tree:
 
-Type name
+Type name:
 : text
 
-Subtype name
+Subtype name:
 : ccsv
 
-Required parameters
+Required parameters:
 : charset. The charset parameter MUST have the value "UTF-8".
 
-Optional parameters
+Optional parameters:
 : None.
 
-Encoding considerations
+Encoding considerations:
 : 8bit. CCSV content is encoded using UTF-8 as specified in {{encoding}}.
   CR and LF occuring within fields are data characters and are not CCSV
   record separators.
 
-Security considerations
+Security considerations:
 : See {{security}}.
 
-Interoperability considerations
+Interoperability considerations:
 : See {{interop}}.
 
-Published specification
+Published specification:
 : This document.
 
-Applications that use this media type
+Applications that use this media type:
 :  Databases, spreadsheets, statistical programs, data
   conversion utilities, and other applications that process
   rectangular tabular data.
 
-Fragment identifier considerations
+Fragment identifier considerations:
 :  CCSV does not define a fragment identifier syntax.
 
-Additional information
+Additional information:
 :
 
-  Deprecated alias names for this type
+  Deprecated alias names for this type:
   : None.
 
-  Magic number(s)
+  Magic number(s):
   : None.
 
-  File name extension(s)
+  File name extension(s):
   : .ccsv
 
-  Macintosh file type code(s)
+  Macintosh file type code(s):
   : None.
 
-Person & email address to contact for further information
+Person & email address to contact for further information:
 : Mike rankin <mrankin@oldgrognard.pub>
 
-Intended usage
+Intended usage:
 : COMMON
 
-Restrictions on usage
+Restrictions on usage:
 : None.
 
-Author
+Author:
 : Mike Rankin <mrankin@oldgrognard.pub>
 
-Change controller
+Change controller:
 : IETF
 
 # Examples {#examples}
@@ -338,42 +337,32 @@ actual CCSV file
 
 The following CCSV data contains three columns and two records:
 
-```
-Name&lt;US&gt;Age&lt;US&gt;City&lt;RS&gt;
-Alice<US>42<US>Boston&lt;RS&gt;
-Bob<US>37<US>Chicago
-```
+    Name<US>Age<US>City<RS>
+    Alice<US>42<US>Boston<RS>
+    Bob<US>37<US>Chicago
 
 ## Empty Fields {empty-fields}
 
 The following record contains an empty second field:
 
-```
-Alice<US><US>Boston
-```
+    Alice<US><US>Boston
 
 The consecutive US characters represent an empty field.
 
 The following record begins with an empty field.
 
-```
-&lt;US&gt;42&lt;US&gt;Boston
-```
+    <US>42<US>Boston
 
 ## Optional Final Record Separator
 
 Both of the following representations contain the same three
 fields and ar valid CCSV representations of a final record:
 
-```
-Alice&lt;US&gt;42&lt;US&gt;Boston
-```
+    Alice<US>42<US>Boston
 
 and:
 
-```
-Alice&lt;US&gt;42&lt;US&gt;Boston&lt;RS&rs;
-```
+    Alice<US>42<US>Boston<RS>
 
 A producer SHOULD generally omit the final RS
 unless its processing environment benefits from a terminating
@@ -384,6 +373,6 @@ record separator.
 # Acknowledgments
 {:numbered="false"}
 
-The author thanks those individuals who provided feedbanc and
-technical discissions concerning the CCSV format and its proposed
-media type
+The author thanks those individuals who provided feedback and
+technical discussions concerning the CCSV format and its proposed
+media type.
