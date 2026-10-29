@@ -29,11 +29,11 @@ and data conversion utilities. This document also specifies the
     Jinja2 3.1.6
     lxml 6.1.1
     natsort 8.4.0
-    platformdirs 4.12.2
+    platformdirs 4.13.4
     pycountry 24.6.1
     PyYAML 6.0.3
     requests 2.33.1
-    wcwidth 0.9.1
+    wcwidth 0.9.2
 -->
 <link href="draft-rankin-ccsv.xml" rel="alternate" type="application/rfc+xml">
 <link href="#copyright" rel="license">
@@ -1053,7 +1053,7 @@ svg {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Rankin</td>
-<td class="center">Expires 20 April 2027</td>
+<td class="center">Expires 2 May 2027</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1066,12 +1066,12 @@ svg {
 <dd class="internet-draft">draft-rankin-ccsv-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2026-10-17" class="published">17 October 2026</time>
+<time datetime="2026-10-29" class="published">29 October 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2027-04-20">20 April 2027</time></dd>
+<dd class="expires"><time datetime="2027-05-02">2 May 2027</time></dd>
 <dt class="label-authors">Author:</dt>
 <dd class="authors">
 <div class="author">
@@ -1121,7 +1121,7 @@ and data conversion utilities. This document also specifies the
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 20 April 2027.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 2 May 2027.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1278,7 +1278,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 <a href="#section-3.1" class="section-number selfRef">3.1. </a><a href="#name-file-structure" class="section-name selfRef">File Structure</a>
         </h3>
 <p id="section-3.1-1">A CCSV file <span class="bcp14">MUST</span> begin with a header.<a href="#section-3.1-1" class="pilcrow">¶</a></p>
-<p id="section-3.1-2">The header and eqch subsequent record <span class="bcp14">MUST</span> contain the ame number of fields<a href="#section-3.1-2" class="pilcrow">¶</a></p>
+<p id="section-3.1-2">The header and each subsequent record <span class="bcp14">MUST</span> contain the same number of fields.<a href="#section-3.1-2" class="pilcrow">¶</a></p>
 <p id="section-3.1-3">A Unit Separator (US, U+001F) separates adjacent fields within a record.<a href="#section-3.1-3" class="pilcrow">¶</a></p>
 <p id="section-3.1-4">A Record Separator (RS, U+001E) separates adjacent records, including the header from the first data record.<a href="#section-3.1-4" class="pilcrow">¶</a></p>
 <p id="section-3.1-5">A CCSV file <span class="bcp14">MUST</span> therefore contain an RS following the header. An RS <span class="bcp14">MAY</span> also follow the final
@@ -1371,13 +1371,13 @@ UTF8-tail  = %x80-BF
 record contains the appropriate number of fields.<a href="#section-3.3-4" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-3.3-5">
 <pre>
-field1&amp;lt;US&amp;gt;field2
-lt;USgt;field2
-field1lt;USgt;
-lt;USgt;
+field&lt;US&gt;field2
+&lt;US&gt;field2
+field1&lt;US&gt;
+&lt;US&gt;
 </pre><a href="#section-3.3-5" class="pilcrow">¶</a>
 </div>
-<p id="section-3.3-6">where <code>lt;USgt;</code> represents U+001F.<a href="#section-3.3-6" class="pilcrow">¶</a></p>
+<p id="section-3.3-6">where <code>&lt;US&gt;</code> represents U+001F.<a href="#section-3.3-6" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -1453,8 +1453,8 @@ data.<a href="#section-6-5" class="pilcrow">¶</a></p>
       <h2 id="name-interoperability-considerat">
 <a href="#section-7" class="section-number selfRef">7. </a><a href="#name-interoperability-considerat" class="section-name selfRef">Interoperability Considerations</a>
       </h2>
-<p id="section-7-1">Interoperability depends on sonsistent implementation of the CCSV
-formatting and encoding requirements<a href="#section-7-1" class="pilcrow">¶</a></p>
+<p id="section-7-1">Interoperability depends on consistent implementation of the CCSV
+formatting and encoding requirements.<a href="#section-7-1" class="pilcrow">¶</a></p>
 <p id="section-7-2">In particular, implementations <span class="bcp14">MUST</span> agree on all of the following:<a href="#section-7-2" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-7-3.1">
@@ -1498,105 +1498,105 @@ the file structure of the file before processing its contents.<a href="#section-
 <p id="section-8-1">IANA is requested to register the following media type in the
 Standards Tree:<a href="#section-8-1" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="dlParallel" id="section-8-2">
-        <dt id="section-8-2.1">Type name</dt>
+        <dt id="section-8-2.1">Type name:</dt>
         <dd style="margin-left: 1.5em" id="section-8-2.2">
           <p id="section-8-2.2.1">text<a href="#section-8-2.2.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-8-2.3">Subtype name</dt>
+<dt id="section-8-2.3">Subtype name:</dt>
         <dd style="margin-left: 1.5em" id="section-8-2.4">
           <p id="section-8-2.4.1">ccsv<a href="#section-8-2.4.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-8-2.5">Required parameters</dt>
+<dt id="section-8-2.5">Required parameters:</dt>
         <dd style="margin-left: 1.5em" id="section-8-2.6">
           <p id="section-8-2.6.1">charset. The charset parameter <span class="bcp14">MUST</span> have the value "UTF-8".<a href="#section-8-2.6.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-8-2.7">Optional parameters</dt>
+<dt id="section-8-2.7">Optional parameters:</dt>
         <dd style="margin-left: 1.5em" id="section-8-2.8">
           <p id="section-8-2.8.1">None.<a href="#section-8-2.8.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-8-2.9">Encoding considerations</dt>
+<dt id="section-8-2.9">Encoding considerations:</dt>
         <dd style="margin-left: 1.5em" id="section-8-2.10">
           <p id="section-8-2.10.1">8bit. CCSV content is encoded using UTF-8 as specified in <a href="#encoding" class="auto internal xref">Section 4</a>.
 CR and LF occuring within fields are data characters and are not CCSV
 record separators.<a href="#section-8-2.10.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-8-2.11">Security considerations</dt>
+<dt id="section-8-2.11">Security considerations:</dt>
         <dd style="margin-left: 1.5em" id="section-8-2.12">
           <p id="section-8-2.12.1">See <a href="#security" class="auto internal xref">Section 6</a>.<a href="#section-8-2.12.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-8-2.13">Interoperability considerations</dt>
+<dt id="section-8-2.13">Interoperability considerations:</dt>
         <dd style="margin-left: 1.5em" id="section-8-2.14">
           <p id="section-8-2.14.1">See <a href="#interop" class="auto internal xref">Section 7</a>.<a href="#section-8-2.14.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-8-2.15">Published specification</dt>
+<dt id="section-8-2.15">Published specification:</dt>
         <dd style="margin-left: 1.5em" id="section-8-2.16">
           <p id="section-8-2.16.1">This document.<a href="#section-8-2.16.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-8-2.17">Applications that use this media type</dt>
+<dt id="section-8-2.17">Applications that use this media type:</dt>
         <dd style="margin-left: 1.5em" id="section-8-2.18">
           <p id="section-8-2.18.1">Databases, spreadsheets, statistical programs, data
   conversion utilities, and other applications that process
   rectangular tabular data.<a href="#section-8-2.18.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-8-2.19">Fragment identifier considerations</dt>
+<dt id="section-8-2.19">Fragment identifier considerations:</dt>
         <dd style="margin-left: 1.5em" id="section-8-2.20">
           <p id="section-8-2.20.1">CCSV does not define a fragment identifier syntax.<a href="#section-8-2.20.1" class="pilcrow">¶</a></p>
 </dd>
       <dd class="break"></dd>
 </dl>
-<p id="section-8-3">Additional information
+<p id="section-8-3">Additional information:
 :<a href="#section-8-3" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="dlParallel" id="section-8-4">
-        <dt id="section-8-4.1">Deprecated alias names for this type</dt>
+        <dt id="section-8-4.1">Deprecated alias names for this type:</dt>
         <dd style="margin-left: 1.5em" id="section-8-4.2">
           <p id="section-8-4.2.1">None.<a href="#section-8-4.2.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-8-4.3">Magic number(s)</dt>
+<dt id="section-8-4.3">Magic number(s):</dt>
         <dd style="margin-left: 1.5em" id="section-8-4.4">
           <p id="section-8-4.4.1">None.<a href="#section-8-4.4.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-8-4.5">File name extension(s)</dt>
+<dt id="section-8-4.5">File name extension(s):</dt>
         <dd style="margin-left: 1.5em" id="section-8-4.6">
           <p id="section-8-4.6.1">.ccsv<a href="#section-8-4.6.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-8-4.7">Macintosh file type code(s)</dt>
+<dt id="section-8-4.7">Macintosh file type code(s):</dt>
         <dd style="margin-left: 1.5em" id="section-8-4.8">
           <p id="section-8-4.8.1">None.<a href="#section-8-4.8.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-8-4.9">Person &amp; email address to contact for further information</dt>
+<dt id="section-8-4.9">Person &amp; email address to contact for further information:</dt>
         <dd style="margin-left: 1.5em" id="section-8-4.10">
           <p id="section-8-4.10.1">Mike rankin <a href="mailto:mrankin@oldgrognard.pub">mrankin@oldgrognard.pub</a><a href="#section-8-4.10.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-8-4.11">Intended usage</dt>
+<dt id="section-8-4.11">Intended usage:</dt>
         <dd style="margin-left: 1.5em" id="section-8-4.12">
           <p id="section-8-4.12.1">COMMON<a href="#section-8-4.12.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-8-4.13">Restrictions on usage</dt>
+<dt id="section-8-4.13">Restrictions on usage:</dt>
         <dd style="margin-left: 1.5em" id="section-8-4.14">
           <p id="section-8-4.14.1">None.<a href="#section-8-4.14.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-8-4.15">Author</dt>
+<dt id="section-8-4.15">Author:</dt>
         <dd style="margin-left: 1.5em" id="section-8-4.16">
           <p id="section-8-4.16.1">Mike Rankin <a href="mailto:mrankin@oldgrognard.pub">mrankin@oldgrognard.pub</a><a href="#section-8-4.16.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-8-4.17">Change controller</dt>
+<dt id="section-8-4.17">Change controller:</dt>
         <dd style="margin-left: 1.5em" id="section-8-4.18">
           <p id="section-8-4.18.1">IETF<a href="#section-8-4.18.1" class="pilcrow">¶</a></p>
 </dd>
@@ -1619,11 +1619,13 @@ actual CCSV file<a href="#section-9-1" class="pilcrow">¶</a></p>
 <a href="#section-9.1" class="section-number selfRef">9.1. </a><a href="#name-basic-example" class="section-name selfRef">Basic Example</a>
         </h3>
 <p id="section-9.1-1">The following CCSV data contains three columns and two records:<a href="#section-9.1-1" class="pilcrow">¶</a></p>
-<p id="section-9.1-2"><code>
-Name&amp;lt;US&amp;gt;Age&amp;lt;US&amp;gt;City&amp;lt;RS&amp;gt;
-Alice&lt;US&gt;42&lt;US&gt;Boston&amp;lt;RS&amp;gt;
+<div class="alignLeft art-text artwork" id="section-9.1-2">
+<pre>
+Name&lt;US&gt;Age&lt;US&gt;City&lt;RS&gt;
+Alice&lt;US&gt;42&lt;US&gt;Boston&lt;RS&gt;
 Bob&lt;US&gt;37&lt;US&gt;Chicago
-</code><a href="#section-9.1-2" class="pilcrow">¶</a></p>
+</pre><a href="#section-9.1-2" class="pilcrow">¶</a>
+</div>
 </section>
 </div>
 <div id="empty-fields-empty-fields">
@@ -1632,14 +1634,18 @@ Bob&lt;US&gt;37&lt;US&gt;Chicago
 <a href="#section-9.2" class="section-number selfRef">9.2. </a><a href="#name-empty-fields-empty-fields" class="section-name selfRef">Empty Fields {empty-fields}</a>
         </h3>
 <p id="section-9.2-1">The following record contains an empty second field:<a href="#section-9.2-1" class="pilcrow">¶</a></p>
-<p id="section-9.2-2"><code>
+<div class="alignLeft art-text artwork" id="section-9.2-2">
+<pre>
 Alice&lt;US&gt;&lt;US&gt;Boston
-</code><a href="#section-9.2-2" class="pilcrow">¶</a></p>
+</pre><a href="#section-9.2-2" class="pilcrow">¶</a>
+</div>
 <p id="section-9.2-3">The consecutive US characters represent an empty field.<a href="#section-9.2-3" class="pilcrow">¶</a></p>
 <p id="section-9.2-4">The following record begins with an empty field.<a href="#section-9.2-4" class="pilcrow">¶</a></p>
-<p id="section-9.2-5"><code>
-&amp;lt;US&amp;gt;42&amp;lt;US&amp;gt;Boston
-</code><a href="#section-9.2-5" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-9.2-5">
+<pre>
+&lt;US&gt;42&lt;US&gt;Boston
+</pre><a href="#section-9.2-5" class="pilcrow">¶</a>
+</div>
 </section>
 </div>
 <div id="optional-final-record-separator">
@@ -1649,13 +1655,17 @@ Alice&lt;US&gt;&lt;US&gt;Boston
         </h3>
 <p id="section-9.3-1">Both of the following representations contain the same three
 fields and ar valid CCSV representations of a final record:<a href="#section-9.3-1" class="pilcrow">¶</a></p>
-<p id="section-9.3-2"><code>
-Alice&amp;lt;US&amp;gt;42&amp;lt;US&amp;gt;Boston
-</code><a href="#section-9.3-2" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-9.3-2">
+<pre>
+Alice&lt;US&gt;42&lt;US&gt;Boston
+</pre><a href="#section-9.3-2" class="pilcrow">¶</a>
+</div>
 <p id="section-9.3-3">and:<a href="#section-9.3-3" class="pilcrow">¶</a></p>
-<p id="section-9.3-4"><code>
-Alice&amp;lt;US&amp;gt;42&amp;lt;US&amp;gt;Boston&amp;lt;RS&amp;rs;
-</code><a href="#section-9.3-4" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-9.3-4">
+<pre>
+Alice&lt;US&gt;42&lt;US&gt;Boston&lt;RS&gt;
+</pre><a href="#section-9.3-4" class="pilcrow">¶</a>
+</div>
 <p id="section-9.3-5">A producer <span class="bcp14">SHOULD</span> generally omit the final RS
 unless its processing environment benefits from a terminating
 record separator.<a href="#section-9.3-5" class="pilcrow">¶</a></p>
@@ -1697,9 +1707,9 @@ record separator.<a href="#section-9.3-5" class="pilcrow">¶</a></p>
       <h2 id="name-acknowledgments">
 <a href="#name-acknowledgments" class="section-name selfRef">Acknowledgments</a>
       </h2>
-<p id="appendix-A-1">The author thanks those individuals who provided feedbanc and
-technical discissions concerning the CCSV format and its proposed
-media type<a href="#appendix-A-1" class="pilcrow">¶</a></p>
+<p id="appendix-A-1">The author thanks those individuals who provided feedback and
+technical discussions concerning the CCSV format and its proposed
+media type.<a href="#appendix-A-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="authors-addresses">
